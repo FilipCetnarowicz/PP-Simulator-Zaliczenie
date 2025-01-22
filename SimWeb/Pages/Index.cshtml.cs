@@ -29,7 +29,7 @@ namespace SimWeb.Pages
             var creatures = new List<IMappable>
             {
                 new Orc("Gorbag"), // Ork o imieniu Gorbag
-                new Elf("Elandor"), // Elf o imieniu Elandor
+                new Elf("Arwen"), // Elf o imieniu Elandor
                 new Animals("Rabbits", false), // Zwierzêta (króliki)
                 new Birds("Eagles", true), // Ptaki (or³y, zdolne do latania)
                 new Birds("Ostriches", false) // Ptaki (struœ, nielataj¹cy)
@@ -46,8 +46,11 @@ namespace SimWeb.Pages
             };
 
             // Ci¹g ruchów symulacji
-            //dldlldlddddddddlllll - kazdy rodzaj postaci sie spotyka
+            //dldlldlddddddddlllll - kazdy rodzaj postaci sie spotyka dldlldlddddddddlllll
             const string moves = "dldlldlddddddddlllll";
+            //dlluulruuurlluulrdulrdurldu - trzy postacie w jednym polu
+
+
 
             // Tworzenie instancji symulacji i jej historii
             Simulation = new Simulation(map, creatures, points, moves);

@@ -4,9 +4,10 @@
     {
 
         int Power { get; }
-        //int Level { get; }
-        //public void Upgrade();
-        //public void Kill();
+        int Level { get; }
+        public void Upgrade();
+        public void Kill();
+        public void Win();
         char Symbol { get; }
         /// <summary>
         /// Assigns the creature to a specific map and position.

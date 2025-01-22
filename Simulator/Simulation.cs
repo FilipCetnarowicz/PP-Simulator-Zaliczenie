@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.ConstrainedExecution;
+using System.Runtime.ExceptionServices;
 using System.Text;
 using System.Threading.Tasks;
 using Simulator.Maps;
@@ -63,30 +66,70 @@ namespace Simulator
             IMappable creature = CurrentMappable;
             Direction direction = DirectionParser.Parse(Moves)[currentMoveIndex];
             creature.Go(direction);
-            //power w punkcie lokalizujac wroga
-            //if(Map.At())
-            //wprowadze to jak zrobie wyswietlanie lvla
-                    //var Location = CurrentMappable.CurrentPosition;
-                    //if (Map.At(Location).Count > 1)
-                    //{
-                    //    var attackerPower = Map.At(Location)[0].Power;
-                    //    var ocuppierPower = CurrentMappable.Power;
-                    //    //var LocationCount = Map.At(Location).Count; - mozna rozwinac do sytuacji kiedy w jednym punkcie jest wiecej stworow
-                    //    if (attackerPower>=ocuppierPower)
-                    //    {
-                    //        Map.At(Location)[1].Upgrade();
-                    //        Map.At(Location)[0].Kill();
-                    //    }
-                    //}
-            // porownac power obu graczy 
-            // zbic lvl do 0 slabszego
-            // a na plaszy sie wyswietli X zgodnie z SimulationHistory TurnLog
 
-            currentMoveIndex++;
+            // walka w zaleznosci od power
+            var Location = CurrentMappable.CurrentPosition;
+            if (Map.At(Location).Count == 2)
+            {
+                var attackerPower = Map.At(Location)[1].Power;
+                var ocuppierPower = Map.At(Location)[0].Power;
+                //var LocationCount = Map.At(Location).Count; - mozna rozwinac do sytuacji kiedy w jednym punkcie jest wiecej stworow
+                if (attackerPower >= ocuppierPower)
+                {
+                    Map.At(Location)[1].Upgrade();
+                    Map.At(Location)[0].Kill();
+                }
+                else
+                {
+                    Map.At(Location)[0].Upgrade();
+                    Map.At(Location)[1].Kill();
+                }
+            }
+            int fighters = Map.At(Location).Count;
+            if (fighters > 2)
+            {
+                Map.At(Location)[fighters-1].Upgrade();
+                for (int i=0;i<fighters-1;i++)
+                {
+                    Map.At(Location)[i].Kill();
+                }
+            }
+            // petla po obiektach 
+            // obiekt 1 = max
+            // if obiekt ma wiecej niz max to jest max
+            // jesli inne maja mniej niz max to kill
+            // max upgrade
+            //for (int i=1; i<fighters;i++)
+            //    {
+            //        if (Map.At(Location)[i].Power > Map.At(Location)[i-1].Power) winner = Map.At(Location)[i];
+            //    }
+
+
+
+
+                // porownac power obu graczy 
+                // zbic lvl do 0 slabszego
+                // a na plaszy sie wyswietli X zgodnie z SimulationHistory TurnLog
+
+                currentMoveIndex++;
+
+            if (currentMoveIndex==10)
+            {
+                IMappable winner = Mappables[0];
+                int j = Mappables.Count;
+                for (int i = 1; i < j; i++)
+                {
+                    if (Mappables[i].Power > Mappables[i - 1].Power) winner = Mappables[i];
+                }
+                winner.Win();
+            }
+
             if (currentMoveIndex >= Moves.Length)
             {
                 Finished = true;
             }
+
+
 
             currentMappableIndex++;
             if (currentMappableIndex >= Mappables.Count)

@@ -39,8 +39,6 @@ public class SimulationHistory
             var currentMove = _simulation.CurrentMoveName;
             var symbolsPos = new Dictionary<Point, char>();
             var powersPos = new Dictionary<Point, int>();
-            //var hisLevel = _simulation.CurrentMappable.Level;
-            //var hisPower = _simulation.CurrentMappable.Power;
             
             _simulation.Turn();
             //tu juz sie pojawia X, po ruchu (czyli gdyby sie zabijaly a nie zerowaly to nie wyswietli sie X)

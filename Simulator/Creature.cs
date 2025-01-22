@@ -3,6 +3,10 @@
 namespace Simulator;
 public abstract class Creature : IMappable
 {
+    public void Win()
+    {
+        level = level + 1000;
+    }
     public string name = "Unknown";
     private int level = 1;
     public Map? CurrentMap { get; private set; }
@@ -50,7 +54,6 @@ public abstract class Creature : IMappable
     public abstract string Info { get; }
 
     public abstract string Greeting();
-
 
     public abstract int Power { get; }
 
