@@ -2,12 +2,19 @@
 {
     public interface IMappable
     {
+
+        //int Power { get; }
+        //int Level { get;}
+        //public void Upgrade();
+        //public void Kill();
         char Symbol { get; }
         /// <summary>
         /// Assigns the creature to a specific map and position.
         /// </summary>
         /// <param name="map">The map to assign.</param>
         /// <param name="point">The point on the map.</param>
+        /// 
+        
         void AssignToMap(Map map, Point point);
 
         /// <summary>

@@ -34,7 +34,7 @@ public class SimulationHistory
             var currentMappable = _simulation.CurrentMappable;
             var currentMove = _simulation.CurrentMoveName;
             var symbolsPos = new Dictionary<Point, char>();
-
+            
             _simulation.Turn();
 
             for (int row = 0; row < SizeY; row++)

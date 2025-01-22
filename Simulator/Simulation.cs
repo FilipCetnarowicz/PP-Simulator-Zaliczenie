@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.ConstrainedExecution;
 using System.Text;
 using System.Threading.Tasks;
 using Simulator.Maps;
@@ -14,7 +15,7 @@ namespace Simulator
         public List<Point> Positions { get; }
         private int currentMappableIndex = 0;
         private int currentMoveIndex = 0;
-        public string Moves { get; }
+        public string Moves { get; set; }
         public bool Finished { get; private set; } = false;
 
         /// <summary>
@@ -61,8 +62,25 @@ namespace Simulator
 
             IMappable creature = CurrentMappable;
             Direction direction = DirectionParser.Parse(Moves)[currentMoveIndex];
-
             creature.Go(direction);
+            //power w punkcie lokalizujac wroga
+            //if(Map.At())
+            //wprowadze to jak zrobie wyswietlanie lvla
+                    //var Location = CurrentMappable.CurrentPosition;
+                    //if (Map.At(Location).Count > 1)
+                    //{
+                    //    var attackerPower = Map.At(Location)[0].Power;
+                    //    var ocuppierPower = CurrentMappable.Power;
+                    //    //var LocationCount = Map.At(Location).Count; - mozna rozwinac do sytuacji kiedy w jednym punkcie jest wiecej stworow
+                    //    if (attackerPower>=ocuppierPower)
+                    //    {
+                    //        Map.At(Location)[1].Upgrade();
+                    //        Map.At(Location)[0].Kill();
+                    //    }
+                    //}
+            // porownac power obu graczy 
+            // zbic lvl do 0 slabszego
+            // a na plaszy sie wyswietli X zgodnie z SimulationHistory TurnLog
 
             currentMoveIndex++;
             if (currentMoveIndex >= Moves.Length)

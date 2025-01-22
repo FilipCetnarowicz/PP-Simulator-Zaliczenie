@@ -46,7 +46,8 @@ namespace SimWeb.Pages
             };
 
             // Ci¹g ruchów symulacji
-            const string moves = "uullddrr";
+            //dldlldlddddddddlllll - kazdy rodzaj postaci sie spotyka
+            const string moves = "dldlldlddddddddlllll";
 
             // Tworzenie instancji symulacji i jej historii
             Simulation = new Simulation(map, creatures, points, moves);

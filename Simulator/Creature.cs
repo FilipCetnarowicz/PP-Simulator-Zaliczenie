@@ -59,7 +59,10 @@ public abstract class Creature : IMappable
     public void Upgrade()
     {
         level = Math.Min(level + 1, 10);
-
+    }
+    public void Kill()
+    {
+        level = 1;
     }
     public override string ToString()
     {
