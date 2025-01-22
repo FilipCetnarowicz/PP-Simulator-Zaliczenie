@@ -3,8 +3,8 @@
     public interface IMappable
     {
 
-        //int Power { get; }
-        //int Level { get;}
+        int Power { get; }
+        //int Level { get; }
         //public void Upgrade();
         //public void Kill();
         char Symbol { get; }

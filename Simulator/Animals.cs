@@ -3,6 +3,7 @@ namespace Simulator;
 
 public class Animals : IMappable
 {
+    public int Power => Size;
     private string description = "Unknown";
     public virtual char Symbol { get; set; } = 'A';
     public string Name { get; set; }
@@ -10,7 +11,7 @@ public class Animals : IMappable
     public Point CurrentPosition { get; set; }
     public Map CurrentMap { get; set; }
 
-    public Animals(string name, bool canFly, string descriptio = "")
+    public Animals(string name, bool canFly, string description = "")
     {
         Name = name;
         Description = description;
@@ -56,7 +57,7 @@ public class Animals : IMappable
         return CurrentPosition;
     }
 
-    public uint Size { get; set; } = 3;
+    public int Size { get; set; } = 3;
     public virtual string Info => $"{Description} <{Size}>";
     public override string ToString()
     {

@@ -24,7 +24,6 @@
             // Wyświetlenie logu dla obecnej tury
             var log = $"{Model.CurrentLog.Mappable} goes {Model.CurrentLog.Move}";
             //<p>It's' power: @Model.simhistory.TurnLogs[Model.Turn].Power</p>
-
             <p>@log</p>
         }
     }
@@ -55,7 +54,10 @@
                         path = $"creatures/{Model.CurrentLog.Symbols[cords]}.jpg";
                     }
                     // Wyświetlenie obrazka w odpowiedniej komórce
-                    <div class="grid-item"><img src="@path" alt="@Model.CurrentLog.Symbols[cords]" /></div>
+                    <div class="grid-item">
+                        <span class="power-value">P: @Model.CurrentLog.Powers[cords]</span>
+                        <img src="@path" alt="@Model.CurrentLog.Symbols[cords]" />
+                        </div>
                 }
                 else
                 {
@@ -64,5 +66,10 @@
                 }
             }
         }
+    </div>
+    <img src=creatures/orcvself.jpg alt=fight />
+
+    <div>
+
     </div>
 </div>

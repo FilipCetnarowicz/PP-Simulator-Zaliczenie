@@ -1,4 +1,6 @@
-﻿namespace Simulator;
+﻿using Simulator.Maps;
+
+namespace Simulator;
 
 /// <summary>
 /// State of map after single simulation turn.
@@ -10,6 +12,8 @@ public class SimulationTurnLog
     /// CurrentMappable.ToString()
     /// </summary>
     public required string Mappable { get; init; }
+    public string HisLevel { get; init; }
+
     /// <summary>
     /// Text representation of move in this turn.
     /// CurrentMoveName.ToString();
@@ -19,4 +23,5 @@ public class SimulationTurnLog
     /// Dictionary of IMappable.Symbol on the map in this turn.
     /// </summary>
     public required Dictionary<Point, char> Symbols { get; init; }
+    public required Dictionary<Point,int> Powers { get; init; }
 }
