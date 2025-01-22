@@ -67,9 +67,21 @@
             }
         }
     </div>
-    <img src=creatures/orcvself.jpg alt=fight />
 
-    <div>
-
-    </div>
+    @* <div > *@
+    @*     @* <img src=creatures/orcvself.jpg alt=fight /> *@ 
+    @* </div> *@
 </div>
+
+@* <div class="control-panel"> *@
+@*     @* @if (Orc.Power>Elf.Power) *@ 
+@*     @* <div class="map-container" style="grid-template-columns: repeat(@Model.SizeX, 1fr); grid-template-rows: repeat(@Model.SizeY, 1fr);"> *@ 
+@*     <div> *@
+@*         <h1> Power: Y </h1> *@
+@*         @* <img src="~/creatures/O.jpg" width="auto" height="=10%" /> *@
+@*     </div> *@
+@*     <div>  *@
+@*         <h1> Power: X</h1>  *@
+@*         @* <img src="~/creatures/E.jpg" width="auto" height="=10%" /> *@
+@*     </div> *@
+@* </div> *@
