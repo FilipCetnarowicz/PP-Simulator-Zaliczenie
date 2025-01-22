@@ -1,0 +1,72 @@
+﻿@page
+@using Simulator
+@model IndexModel
+@{
+    ViewData["Title"] = "Orc vs Elf";
+}
+
+<div class="control-panel">
+    <form asp-page="/Index" method="post">
+        <!-- Przycisk do przejścia do poprzedniej tury -->
+        <button type="submit" asp-page-handler="PrevTurn">←</button>
+    </form>
+    <form asp-page="/Index" method="post">
+        <!-- Przycisk do przejścia do następnej tury -->
+        <button type="submit" asp-page-handler="NextTurn">→</button>
+    </form>
+    <h1>Numer tury: @Model.Turn</h1>
+</div>
+
+<div class="control-panel">
+    @{
+        if (Model.Turn != 0)
+        {
+            // Wyświetlenie logu dla obecnej tury
+            var log = $"{Model.CurrentLog.Mappable} wykonuje ruch: {Model.CurrentLog.Move}";
+            <p>@log</p>
+        }
+        else
+        {
+            // Wyświetlenie komunikatu dla tury początkowej
+            var log = "Pozycje startowe";
+            <p>@log</p>
+        }
+    }
+</div>
+
+<div class="container">
+    <div class="map-container" style="grid-template-columns: repeat(@Model.SizeX, 1fr); grid-template-rows: repeat(@Model.SizeY, 1fr);">
+
+        @for (int row = 0; row < Model.SizeY; row++)
+        {
+            for (int col = 0; col < Model.SizeX; col++)
+            {
+                var cords = new Point(col, row);
+                if (Model.CurrentLog.Symbols.ContainsKey(cords))
+                {
+                    var path = "";
+                    // Wybór ścieżki obrazka na podstawie symbolu
+                    if (Model.CurrentLog.Symbols[cords] == 'B')
+                    {
+                        path = $"creatures/BB.jpg";
+                    }
+                    else if (Model.CurrentLog.Symbols[cords] == 'X')
+                    {
+                        path = $"creatures/X.jpg";
+                    }
+                    else
+                    {
+                        path = $"creatures/{Model.CurrentLog.Symbols[cords]}.jpg";
+                    }
+                    // Wyświetlenie obrazka w odpowiedniej komórce
+                    <div class="grid-item"><img src="@path" alt="@Model.CurrentLog.Symbols[cords]" /></div>
+                }
+                else
+                {
+                    // Pusta komórka mapy
+                    <div class="grid-item"></div>
+                }
+            }
+        }
+    </div>
+</div>
