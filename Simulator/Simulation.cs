@@ -20,6 +20,7 @@ namespace Simulator
         private int currentMoveIndex = 0;
         public string Moves { get; set; }
         public bool Finished { get; private set; } = false;
+        public List<Point> ActionPoints = [new Point(0, 0), new Point(0, 1), new Point(0, 2)];
 
         /// <summary>
         /// Creature which will be moving current turn.
@@ -67,6 +68,10 @@ namespace Simulator
             Direction direction = DirectionParser.Parse(Moves)[currentMoveIndex];
             creature.Go(direction);
 
+            // wchodzenie w point action
+                // jesli punkt ten w ktorym jest stwor Map.At... CONTAINS ktorys punkt z listy power action
+                    // to Map.At (czyli ten stwor) .Action
+
             // walka w zaleznosci od power
             var Location = CurrentMappable.CurrentPosition;
             if (Map.At(Location).Count == 2)
@@ -106,13 +111,8 @@ namespace Simulator
 
 
 
-
-                // porownac power obu graczy 
-                // zbic lvl do 0 slabszego
-                // a na plaszy sie wyswietli X zgodnie z SimulationHistory TurnLog
-
                 currentMoveIndex++;
-
+            // wygrywanie po 10 rundzie (super duzy power)
             if (currentMoveIndex==10)
             {
                 IMappable winner = Mappables[0];
