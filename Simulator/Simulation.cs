@@ -114,15 +114,15 @@ namespace Simulator
             if (DeadlyPoints.Contains(Location) && !(CurrentMappable.Symbol=='B'))
             {
                 CurrentMappable.Kill();
-                int deadlyPointsNumber = DeadlyPoints.Count;
-                for (int i = 0; i < deadlyPointsNumber; i++)
-                {
-                    if (Location.Equals(DeadlyPoints[i]))
-                    {
-                        DeadlyPoints.Remove(DeadlyPoints[i]);
-                        break;
-                    }
-                }
+                //int deadlyPointsNumber = DeadlyPoints.Count;
+                //for (int i = 0; i < deadlyPointsNumber; i++)
+                //{
+                //    if (Location.Equals(DeadlyPoints[i]))
+                //    {
+                //        DeadlyPoints.Remove(DeadlyPoints[i]);
+                //        break;
+                //    }
+                //}
             }
 
             // ----------------------------------------
@@ -161,9 +161,9 @@ namespace Simulator
             {
                 IMappable winner = Mappables[0];
                 int j = Mappables.Count;
-                for (int i = 1; i < j; i++)
+                for (int i = 0; i < j; i++)
                 {
-                    if (Mappables[i].Power > Mappables[i - 1].Power) winner = Mappables[i];
+                    if (Mappables[i].Power > winner.Power) winner = Mappables[i];
                 }
                 winner.Win();
             }

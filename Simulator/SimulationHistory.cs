@@ -17,6 +17,7 @@ public class SimulationHistory
         SizeX = _simulation.Map.SizeX;
         SizeY = _simulation.Map.SizeY;
 
+        //postacie i ich powery
         var startingPosDict = new Dictionary<Point, char>();
         for (int i = 0; i < _simulation.Mappables.Count; i++)
         {
@@ -27,14 +28,23 @@ public class SimulationHistory
         {
             startingPowerDict.Add(_simulation.Positions[i], _simulation.Mappables[i].Power.ToString());
         }
+
+        //nieruchome punkty
         var startingActionDict = new Dictionary<Point, string>();
         for (int i = 0; i < _simulation.ActionPoints.Count; i++)
         {
             startingActionDict.Add(_simulation.ActionPoints[i], "AA");
         }
+        var startingDeadlyDict = new Dictionary<Point, string>();
+        for (int i = 0; i < _simulation.DeadlyPoints.Count; i++)
+        {
+            startingDeadlyDict.Add(_simulation.DeadlyPoints[i], "DD");
+        }
 
+        //smok
         var startingDragonPoint = _simulation.DragonCave.Item1;
         var startingDragonString = _simulation.DragonCave.Item2.Power.ToString();
+
         TurnLogs.Add(new SimulationTurnLog
         {
             Mappable = "Pozycje startowe",
@@ -42,6 +52,7 @@ public class SimulationHistory
             Symbols = startingPosDict,
             Powers = startingPowerDict,
             ActionPoints = startingActionDict,
+            DeadlyPoints = startingDeadlyDict,
             DragonLog = (startingDragonPoint, startingDragonString)
         });
         Run();
@@ -53,26 +64,29 @@ public class SimulationHistory
         {
             var currentMappable = _simulation.CurrentMappable;
             var currentMove = _simulation.CurrentMoveName;
-            var actionPosSim = _simulation.ActionPoints;
             var actionPos = new Dictionary<Point, string>();
+            var deadlyPos = new Dictionary<Point, string>();
             var symbolsPos = new Dictionary<Point, char>();
             var powersPos = new Dictionary<Point, string>();
             var DragonPoint = _simulation.DragonCave.Item1;
             var DragonString = _simulation.DragonCave.Item2.Power.ToString();
-
             _simulation.Turn();
             //tu juz sie pojawia X, po ruchu (czyli gdyby sie zabijaly a nie zerowaly to nie wyswietli sie X)
 
             // wyswietlanie pozycji akcji (trawa)
-            int actionPointsNumber = actionPosSim.Count;
+            int actionPointsNumber = _simulation.ActionPoints.Count;
             for (int i = 0; i < actionPointsNumber; i++)
             { 
-                actionPos.Add(actionPosSim[i], "AA");
+                actionPos.Add(_simulation.ActionPoints[i], "AA");
             }
             // if ork to hunting i symbol zmienic na H,
             // else if elf to singing i symbol na S,
             // else (czyli wszystkie zwierzaki) to givingBirth symbol zmienic na G
-
+            int deadlyPointsNumber = _simulation.DeadlyPoints.Count;
+            for (int i = 0; i < deadlyPointsNumber; i++)
+            {
+                deadlyPos.Add(_simulation.DeadlyPoints[i], "DD");
+            }
 
             //jak chcialbym dac obrazku przy action to musialbym tu dac zmiane symbolu w zapisie, na np. BBA od flying bird Action
             for (int row = 0; row < SizeY; row++)
@@ -103,6 +117,7 @@ public class SimulationHistory
                 Symbols = symbolsPos,
                 Powers = powersPos,
                 ActionPoints = actionPos,
+                DeadlyPoints = deadlyPos,
                 DragonLog = (DragonPoint, DragonString)
             });
         }

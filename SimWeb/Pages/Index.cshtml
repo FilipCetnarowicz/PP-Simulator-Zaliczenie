@@ -64,6 +64,7 @@
                         <img src="@path" alt="@Model.CurrentLog.Symbols[cords]" />
                     </div>
                 }
+
                 else if (Model.CurrentLog.ActionPoints.ContainsKey(cords))
                 {
                     if (Model.CurrentLog.ActionPoints[cords] == "AA")
@@ -71,16 +72,24 @@
                         path = $"creatures/AA.jpg";
                     }
 
-                    // Wyświetlenie obrazka w odpowiedniej komórce
-
                     <div class="grid-item">
                         <img src="@path" alt="@Model.CurrentLog.ActionPoints[cords] class="img2" />
                     </div>
                 }
-                
-                    //<div class="grid-item">
-                      //  <img src="@pathAction" alt="@Model.CurrentLog.ActionPoints[cords]" />
-                    //</div>
+
+                // kolce
+                else if (Model.CurrentLog.DeadlyPoints.ContainsKey(cords))
+                {
+                    if (Model.CurrentLog.DeadlyPoints[cords] == "DD")
+                    {
+                        path = $"creatures/DD.jpg";
+                    }
+
+                    <div class="grid-item">
+                        <img src="@path" alt="@Model.CurrentLog.DeadlyPoints[cords] class="img2" />
+                    </div>
+                }
+
                 else if (Model.CurrentLog.DragonLog.Item1.Equals(cords))
                 //Model.CurrentLog.DragonLog.Item1.X == cords.X && Model.CurrentLog.DragonLog.Item1.Y == cords.Y *@
                 {
