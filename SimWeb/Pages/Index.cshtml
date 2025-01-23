@@ -37,10 +37,10 @@
         {
             for (int col = 0; col < Model.SizeX; col++)
             {
+                var path = "";
                 var cords = new Point(col, row);
                 if (Model.CurrentLog.Symbols.ContainsKey(cords))
                 {
-                    var path = "";
                     // Wybór ścieżki obrazka na podstawie symbolu
                     if (Model.CurrentLog.Symbols[cords] == 'B')
                     {
@@ -55,16 +55,34 @@
                     {
                         path = $"creatures/{Model.CurrentLog.Symbols[cords]}.jpg";
                     }
-                    @* if (Model.CurrentLog.ActionPoints[cords]=='AA') *@
-                    @* { *@
-                    @*     path = $"creatures/AA.jpg"; *@
-                    @* } *@
+
+
                     // Wyświetlenie obrazka w odpowiedniej komórce
+
                     <div class="grid-item">
                         <span class="power-value">P: @Model.CurrentLog.Powers[cords]</span>
                         <img src="@path" alt="@Model.CurrentLog.Symbols[cords]" />
-                        </div>
+                    </div>
                 }
+                else if (Model.CurrentLog.ActionPoints.ContainsKey(cords))
+                {
+                    if (Model.CurrentLog.ActionPoints[cords] == "AA")
+                    {
+                        path = $"creatures/AA.jpg";
+                    }
+
+                    // Wyświetlenie obrazka w odpowiedniej komórce
+
+                    <div class="grid-item">
+                        <img src="@path" alt="@Model.CurrentLog.ActionPoints[cords]" />
+                    </div>
+
+                }
+                
+                    //<div class="grid-item">
+                      //  <img src="@pathAction" alt="@Model.CurrentLog.ActionPoints[cords]" />
+                    //</div>
+
                 else
                 {
                     // Pusta komórka mapy

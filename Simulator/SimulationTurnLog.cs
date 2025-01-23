@@ -21,7 +21,7 @@ public class SimulationTurnLog
     /// </summary>
     public required string Move { get; init; }
 
-    public Dictionary<Point,char> ActionPoints { get; init; }
+    public Dictionary<Point, string> ActionPoints { get; init; }
     public required Dictionary<Point, char> Symbols { get; init; }
     public required Dictionary<Point, string> Powers { get; init; }
 }

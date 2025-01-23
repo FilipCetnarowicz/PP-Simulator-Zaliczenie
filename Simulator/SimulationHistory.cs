@@ -27,7 +27,13 @@ public class SimulationHistory
         {
             startingPowerDict.Add(_simulation.Positions[i], _simulation.Mappables[i].Power.ToString());
         }
-        TurnLogs.Add(new SimulationTurnLog { Mappable = "Pozycje startowe", Move = "Pozycje startowe", Symbols = startingPosDict, Powers = startingPowerDict });
+        var startingActionDict = new Dictionary<Point, string>();
+        for (int i = 0; i < _simulation.ActionPoints.Count; i++)
+        {
+            startingActionDict.Add(_simulation.ActionPoints[i], "AA");
+        }
+        
+        TurnLogs.Add(new SimulationTurnLog { Mappable = "Pozycje startowe", Move = "Pozycje startowe", Symbols = startingPosDict, Powers = startingPowerDict, ActionPoints = startingActionDict });
         Run();
     }
 
@@ -37,18 +43,31 @@ public class SimulationHistory
         {
             var currentMappable = _simulation.CurrentMappable;
             var currentMove = _simulation.CurrentMoveName;
-            //var actionPos = new Dictionary<Point, string>();
+            var actionPosSim = _simulation.ActionPoints;
+            var actionPos = new Dictionary<Point, string>();
             var symbolsPos = new Dictionary<Point, char>();
             var powersPos = new Dictionary<Point, string>();
             
             _simulation.Turn();
             //tu juz sie pojawia X, po ruchu (czyli gdyby sie zabijaly a nie zerowaly to nie wyswietli sie X)
-            
+
+            // wyswietlanie pozycji akcji (trawa)
+            int actionPointsNumber = actionPosSim.Count;
+            for (int i = 0; i < actionPointsNumber; i++)
+            { 
+                actionPos.Add(actionPosSim[i], "AA");
+            }
+            // if ork to hunting i symbol zmienic na H,
+            // else if elf to singing i symbol na S,
+            // else (czyli wszystkie zwierzaki) to givingBirth symbol zmienic na G
+
+
             //jak chcialbym dac obrazku przy action to musialbym tu dac zmiane symbolu w zapisie, na np. BBA od flying bird Action
             for (int row = 0; row < SizeY; row++)
             {
                 for (int col = 0; col < SizeX; col++)
                 {
+                    
                     if (_simulation.Map.At(col, row).Count > 1)
                     {
                         symbolsPos.Add(new Point(col, row), 'X');
@@ -63,13 +82,9 @@ public class SimulationHistory
                         powersPos.Add(new Point(col, row), _simulation.Map.At(col, row)[0].Power.ToString());
                     }
 
-                    // if (jakis wzor na to na ktorych polach jest zarcie)
-                        // if ork to hunting i symbol zmienic na H,
-                        // else if elf to singing i symbol na S,
-                        // else (czyli wszystkie zwierzaki) symbol zmienic na 
-                }
+                    }
             }
-            TurnLogs.Add(new SimulationTurnLog { Mappable = currentMappable.ToString(), Move = currentMove, Symbols = symbolsPos, Powers = powersPos});
+            TurnLogs.Add(new SimulationTurnLog { Mappable = currentMappable.ToString(), Move = currentMove, Symbols = symbolsPos, Powers = powersPos, ActionPoints = actionPos});
             //HisLevel =, HisPower =
         }
     }
