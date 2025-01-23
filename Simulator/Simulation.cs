@@ -89,19 +89,6 @@ namespace Simulator
                     DragonCave.Item2.Power = 3;
                 }
             }
-            // walka z dragonem
-            if (Location.Equals(DragonCave.Item1))
-            {
-                if (DragonCave.Item2.Power >= CurrentMappable.Power)
-                {
-                    CurrentMappable.Kill();
-                }
-                else
-                {
-                    CurrentMappable.Win();
-                    DragonCave.Item2.Power = 0;
-                }
-            }
 
 
 
@@ -113,7 +100,7 @@ namespace Simulator
                 int actionPointsNumber = ActionPoints.Count;
                 for (int i = 0; i < actionPointsNumber; i++)
                 {
-                    if (Location.Equals(ActionPoints[i]))
+                    if (Location.Equals(ActionPoints[i]) && CurrentMappable.Symbol =='O')
                     {
                         ActionPoints.Remove(ActionPoints[i]);
                         break;
