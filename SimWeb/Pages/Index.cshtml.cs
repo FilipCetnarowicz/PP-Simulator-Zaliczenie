@@ -29,10 +29,10 @@ namespace SimWeb.Pages
             var creatures = new List<IMappable>
             {
                 new Orc("Gorbag",5), // Ork o imieniu Gorbag
-                new Elf("Arwen"), // Elf o imieniu Elandor
-                new Animals("Rabbits", false), // Zwierzêta (króliki)
-                new Birds("Eagles", true), // Ptaki (or³y, zdolne do latania)
-                new Birds("Ostriches", false) // Ptaki (struœ, nielataj¹cy)
+                new Elf("Arwen"){Level=2}, // Elf o imieniu Elandor
+                new Animals("Rabbits", false) {Level=2}, // Zwierzêta (króliki)
+                new Birds("Eagles", true) {Level=2}, // Ptaki (or³y, zdolne do latania)
+                new Birds("Ostriches", false) {Level=2} // Ptaki (struœ, nielataj¹cy)
             };
 
             // Pozycje startowe istot na mapie
@@ -47,7 +47,7 @@ namespace SimWeb.Pages
 
             // Ci¹g ruchów symulacji
             //dldlldlddddddddlllll - kazdy rodzaj postaci sie spotyka dldlldlddddddddlllll
-            const string moves = "llllldlllldllllullllullllullllullllu";
+            const string moves = "llllllllllllllllllllll";
             //dlluulruuurlluulrdulrdurldu - trzy postacie w jednym polu
             //lllllulllullllllllllllllllllllllll - ork wchodzi i wychodzi ze smoka
 

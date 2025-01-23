@@ -21,6 +21,7 @@ namespace Simulator
         private int currentMoveIndex = 0;
         public string Moves { get; set; }
         public bool Finished { get; private set; } = false;
+        public List<Point> DeadlyPoints = [new Point(1, 2), new Point(2, 3), new Point(1, 4), new Point(3, 5)];
         public List<Point> ActionPoints = [new Point(0, 1), new Point(0, 2), new Point(0, 3)];
 
         /// <summary>
@@ -100,14 +101,30 @@ namespace Simulator
                 int actionPointsNumber = ActionPoints.Count;
                 for (int i = 0; i < actionPointsNumber; i++)
                 {
-                    if (Location.Equals(ActionPoints[i]) && CurrentMappable.Symbol =='O')
+                    if (Location.Equals(ActionPoints[i]))
                     {
                         ActionPoints.Remove(ActionPoints[i]);
                         break;
                     }
                 }
             }
-                
+
+            // --------------------------------------
+            // KOLCE na nieloty
+            if (DeadlyPoints.Contains(Location) && !(CurrentMappable.Symbol=='B'))
+            {
+                CurrentMappable.Kill();
+                int deadlyPointsNumber = DeadlyPoints.Count;
+                for (int i = 0; i < deadlyPointsNumber; i++)
+                {
+                    if (Location.Equals(DeadlyPoints[i]))
+                    {
+                        DeadlyPoints.Remove(DeadlyPoints[i]);
+                        break;
+                    }
+                }
+            }
+
             // ----------------------------------------
             // walka w zaleznosci od power
             if (Map.At(Location).Count == 2)
