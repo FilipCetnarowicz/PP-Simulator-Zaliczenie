@@ -36,6 +36,6 @@ public class Elf : Creature
         //}
     }
 
-    public override string Info => $"[{Agility}]";
+    public override string Info => $"Agility[{Agility}]";
     public override int Power => (Level * 8) + (Agility * 2);
 }

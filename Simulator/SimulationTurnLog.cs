@@ -20,9 +20,8 @@ public class SimulationTurnLog
     /// CurrentMoveName.ToString();
     /// </summary>
     public required string Move { get; init; }
-    /// <summary>
-    /// Dictionary of IMappable.Symbol on the map in this turn.
-    /// </summary>
+
+    public Dictionary<Point,char> ActionPoints { get; init; }
     public required Dictionary<Point, char> Symbols { get; init; }
     public required Dictionary<Point, string> Powers { get; init; }
 }

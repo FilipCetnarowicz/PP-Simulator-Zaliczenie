@@ -34,5 +34,5 @@ public class Orc : Creature
         //}
     }
     public override int Power => (Level * 7) + (Rage * 3);
-    public override string Info => $"[{Rage}]";
+    public override string Info => $"Rage[{Rage}]";
 }

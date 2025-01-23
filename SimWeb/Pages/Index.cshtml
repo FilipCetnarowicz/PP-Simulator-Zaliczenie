@@ -22,7 +22,8 @@
         if (Model.Turn != 0)
         {
             // Wyświetlenie logu dla obecnej tury
-            var log = $"{Model.CurrentLog.Mappable} goes {Model.CurrentLog.Move}";
+            var log = $"{Model.CurrentLog.Mappable}";
+            //goes { Model.CurrentLog.Move}
             //<p>It's' power: @Model.simhistory.TurnLogs[Model.Turn].Power</p>
             <p>@log</p>
         }
@@ -43,6 +44,7 @@
                     // Wybór ścieżki obrazka na podstawie symbolu
                     if (Model.CurrentLog.Symbols[cords] == 'B')
                     {
+                        @* if (punkt[cords] z symboli == punkt[cords] z ActionPoints) to AB (action bird), else to co nizej *@
                         path = $"creatures/BB.jpg";
                     }
                     else if (Model.CurrentLog.Symbols[cords] == 'X')
@@ -53,6 +55,10 @@
                     {
                         path = $"creatures/{Model.CurrentLog.Symbols[cords]}.jpg";
                     }
+                    @* if (Model.CurrentLog.ActionPoints[cords]=='AA') *@
+                    @* { *@
+                    @*     path = $"creatures/AA.jpg"; *@
+                    @* } *@
                     // Wyświetlenie obrazka w odpowiedniej komórce
                     <div class="grid-item">
                         <span class="power-value">P: @Model.CurrentLog.Powers[cords]</span>

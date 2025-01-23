@@ -116,7 +116,8 @@ namespace Simulator
 
             // ------------------------------------------
             // wygrywanie po 10 rundzie (super duzy power)
-            if (currentMoveIndex==10)
+            int fourCycles = Mappables.Count * 4;
+            if (currentMoveIndex==fourCycles)
             {
                 IMappable winner = Mappables[0];
                 int j = Mappables.Count;

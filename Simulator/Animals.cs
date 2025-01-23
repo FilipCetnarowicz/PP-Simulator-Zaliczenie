@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.Reflection.Emit;
 using System.Reflection.Metadata.Ecma335;
+using System.Xml.Linq;
 namespace Simulator;
 
 public class Animals : IMappable
@@ -19,7 +20,11 @@ public class Animals : IMappable
         level = 1;
     }
     private int level = 1;
-    public int Level { get; init; }
+    public int Level
+    {
+        get { return level; }
+        init { level = Validator.Limiter(value, 1, 10); }
+    }
     public int Power => Size*level;
     private string description = "Unknown";
     public virtual char Symbol { get; set; } = 'A';
@@ -79,10 +84,14 @@ public class Animals : IMappable
     { 
         get => size;
     }
-    public virtual string Info => $"{Description} <{Size}>";
+    public virtual string Info => $"Size[{Size}]";
+    //public virtual string Info => $"{Description} <{Size}>";
+
     public override string ToString()
     {
-        return $"{GetType().Name.ToUpper()}: {Info}";
+        //return $"{GetType().Name.ToUpper()}: {Info}";
+        return $"{GetType().Name.ToUpper()}: {Description} did his turn. Current stats: Level[{Level}] * {Info} => POWER[{Power}]";
+
     }
 
     public void Action()

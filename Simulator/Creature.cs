@@ -9,7 +9,6 @@ public abstract class Creature : IMappable
         level = level + 1000;
     }
     public string name = "Unknown";
-    private int level = 1;
     public Map? CurrentMap { get; private set; }
     public Point CurrentPosition { get; set; }
 
@@ -23,6 +22,7 @@ public abstract class Creature : IMappable
             name = Validator.Shortener(value, 3, 25, '#');
         }
     }
+    private int level = 1;
     public int Level
     {
         get { return level; }
@@ -70,7 +70,7 @@ public abstract class Creature : IMappable
     }
     public override string ToString()
     {
-        return $"{GetType().Name.ToUpper()}: {Name} [{Level}] {Info}";
+        return $"{GetType().Name.ToUpper()}: {Name} did his turn. Current stats: Level[{Level}] * {Info} => POWER[{Power}]";
     }
 
 }

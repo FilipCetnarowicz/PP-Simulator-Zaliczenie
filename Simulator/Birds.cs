@@ -13,13 +13,15 @@
         {
             get
             {
-                string FlyStatus = CanFly ? "fly+" : "fly-";
-                return $"{Description} ({FlyStatus}) <{Size}>";
+                string FlyStatus = CanFly ? "+" : "-";
+                return $"Flying[{FlyStatus}]:   Size[{Size}]";
             }
         }
         public override string ToString()
         {
-            return $"{GetType().Name.ToUpper()}: {Info}";
+            //return $"{GetType().Name.ToUpper()}: {Info}"
+            return $"{GetType().Name.ToUpper()}: {Description} did his turn. Current stats: {Info} * Level[{Level}] => POWER[{Power}]";
+
         }
         public override string Go(Direction direction)
         {
