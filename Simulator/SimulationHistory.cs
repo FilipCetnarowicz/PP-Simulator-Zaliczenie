@@ -32,8 +32,21 @@ public class SimulationHistory
         {
             startingActionDict.Add(_simulation.ActionPoints[i], "AA");
         }
-        
-        TurnLogs.Add(new SimulationTurnLog { Mappable = "Pozycje startowe", Move = "Pozycje startowe", Symbols = startingPosDict, Powers = startingPowerDict, ActionPoints = startingActionDict });
+
+        var startingDragonPoint = _simulation.DragonCave.Item1;
+        var startingDragonString = _simulation.DragonCave.Item2.Power.ToString();
+
+        TurnLogs.Add(new SimulationTurnLog 
+        { 
+            Mappable = "Pozycje startowe", 
+            Move = "Pozycje startowe", 
+            Symbols = startingPosDict, 
+            Powers = startingPowerDict, 
+            ActionPoints = startingActionDict,
+            DragonLog = (startingDragonPoint,startingDragonString)
+        });
+        //Dragon = _simulation.DragonCave;
+
         Run();
     }
 
@@ -47,27 +60,27 @@ public class SimulationHistory
             var actionPos = new Dictionary<Point, string>();
             var symbolsPos = new Dictionary<Point, char>();
             var powersPos = new Dictionary<Point, string>();
-            
+            var DragonPoint = _simulation.DragonCave.Item1;
+            var DragonString = _simulation.DragonCave.Item2.Power.ToString();
+
             _simulation.Turn();
             //tu juz sie pojawia X, po ruchu (czyli gdyby sie zabijaly a nie zerowaly to nie wyswietli sie X)
 
             // wyswietlanie pozycji akcji (trawa)
             int actionPointsNumber = actionPosSim.Count;
             for (int i = 0; i < actionPointsNumber; i++)
-            { 
+            {
                 actionPos.Add(actionPosSim[i], "AA");
             }
             // if ork to hunting i symbol zmienic na H,
             // else if elf to singing i symbol na S,
             // else (czyli wszystkie zwierzaki) to givingBirth symbol zmienic na G
 
-
             //jak chcialbym dac obrazku przy action to musialbym tu dac zmiane symbolu w zapisie, na np. BBA od flying bird Action
             for (int row = 0; row < SizeY; row++)
             {
                 for (int col = 0; col < SizeX; col++)
                 {
-                    
                     if (_simulation.Map.At(col, row).Count > 1)
                     {
                         symbolsPos.Add(new Point(col, row), 'X');
@@ -75,17 +88,23 @@ public class SimulationHistory
 
                         // tu nie ustawiam powera, bo wszystko oblicza sie i tak w silniku a przy wyswietlaniu jak jest wiecej pol to zaden power ma sie nie wyswietlac, tylko w backendzie widniec 
                     }
-
                     else if (_simulation.Map.At(col, row).Count == 1)
                     {
                         symbolsPos.Add(new Point(col, row), _simulation.Map.At(col, row)[0].Symbol);
                         powersPos.Add(new Point(col, row), _simulation.Map.At(col, row)[0].Power.ToString());
                     }
+                }
 
-                    }
+                TurnLogs.Add(new SimulationTurnLog
+                {
+                    Mappable = currentMappable.ToString(),
+                    Move = currentMove,
+                    Symbols = symbolsPos,
+                    Powers = powersPos,
+                    ActionPoints = actionPos,
+                    DragonLog = (DragonPoint, DragonString)
+                });
             }
-            TurnLogs.Add(new SimulationTurnLog { Mappable = currentMappable.ToString(), Move = currentMove, Symbols = symbolsPos, Powers = powersPos, ActionPoints = actionPos});
-            //HisLevel =, HisPower =
         }
     }
 }
