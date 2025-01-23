@@ -13,6 +13,7 @@ namespace Simulator
 {
     public class Simulation
     {
+        public (Point, Dragon) DragonCave { get; set; }
         public Map Map { get; }
         public List<IMappable> Mappables { get; }
         public List<Point> Positions { get; }
@@ -53,6 +54,10 @@ namespace Simulator
             Positions = positions;
             Moves = moves;
 
+            var newDragon = new Dragon();
+            DragonCave = (new Point(0, 0), newDragon);
+
+
             for (int i = 0; i < mappables.Count; i++)
             {
                 mappables[i].AssignToMap(map, positions[i]);
@@ -68,6 +73,37 @@ namespace Simulator
             Direction direction = DirectionParser.Parse(Moves)[currentMoveIndex];
             creature.Go(direction);
             var Location = CurrentMappable.CurrentPosition;
+
+
+            // --------------------------------
+            // walka z dragonem
+            if (Location.Equals(DragonCave.Item1))
+            {
+                if (DragonCave.Item2.Power >= CurrentMappable.Power)
+                {
+                    CurrentMappable.Kill();
+                }
+                else
+                {
+                    CurrentMappable.Win();
+                    DragonCave.Item2.Power = 0;
+                }
+            }
+            // walka z dragonem
+            if (Location.Equals(DragonCave.Item1))
+            {
+                if (DragonCave.Item2.Power >= CurrentMappable.Power)
+                {
+                    CurrentMappable.Kill();
+                }
+                else
+                {
+                    CurrentMappable.Win();
+                    DragonCave.Item2.Power = 0;
+                }
+            }
+
+
 
             // --------------------------------------
             // wchodzenie w point action

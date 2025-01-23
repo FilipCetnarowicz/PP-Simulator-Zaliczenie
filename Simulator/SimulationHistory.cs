@@ -32,8 +32,18 @@ public class SimulationHistory
         {
             startingActionDict.Add(_simulation.ActionPoints[i], "AA");
         }
-        
-        TurnLogs.Add(new SimulationTurnLog { Mappable = "Pozycje startowe", Move = "Pozycje startowe", Symbols = startingPosDict, Powers = startingPowerDict, ActionPoints = startingActionDict });
+
+        var startingDragonPoint = _simulation.DragonCave.Item1;
+        var startingDragonString = _simulation.DragonCave.Item2.Power.ToString();
+        TurnLogs.Add(new SimulationTurnLog
+        {
+            Mappable = "Pozycje startowe",
+            Move = "Pozycje startowe",
+            Symbols = startingPosDict,
+            Powers = startingPowerDict,
+            ActionPoints = startingActionDict,
+            DragonLog = (startingDragonPoint, startingDragonString)
+        });
         Run();
     }
 
@@ -47,7 +57,9 @@ public class SimulationHistory
             var actionPos = new Dictionary<Point, string>();
             var symbolsPos = new Dictionary<Point, char>();
             var powersPos = new Dictionary<Point, string>();
-            
+            var DragonPoint = _simulation.DragonCave.Item1;
+            var DragonString = _simulation.DragonCave.Item2.Power.ToString();
+
             _simulation.Turn();
             //tu juz sie pojawia X, po ruchu (czyli gdyby sie zabijaly a nie zerowaly to nie wyswietli sie X)
 
@@ -82,10 +94,17 @@ public class SimulationHistory
                         powersPos.Add(new Point(col, row), _simulation.Map.At(col, row)[0].Power.ToString());
                     }
 
-                    }
+                }
             }
-            TurnLogs.Add(new SimulationTurnLog { Mappable = currentMappable.ToString(), Move = currentMove, Symbols = symbolsPos, Powers = powersPos, ActionPoints = actionPos});
-            //HisLevel =, HisPower =
+            TurnLogs.Add(new SimulationTurnLog
+            {
+                Mappable = currentMappable.ToString(),
+                Move = currentMove,
+                Symbols = symbolsPos,
+                Powers = powersPos,
+                ActionPoints = actionPos,
+                DragonLog = (DragonPoint, DragonString)
+            });
         }
     }
 }

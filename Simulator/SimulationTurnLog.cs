@@ -20,7 +20,7 @@ public class SimulationTurnLog
     /// CurrentMoveName.ToString();
     /// </summary>
     public required string Move { get; init; }
-
+    public (Point, string) DragonLog { get; init; }
     public Dictionary<Point, string> ActionPoints { get; init; }
     public required Dictionary<Point, char> Symbols { get; init; }
     public required Dictionary<Point, string> Powers { get; init; }

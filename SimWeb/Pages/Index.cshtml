@@ -82,7 +82,15 @@
                     //<div class="grid-item">
                       //  <img src="@pathAction" alt="@Model.CurrentLog.ActionPoints[cords]" />
                     //</div>
-
+                else if (Model.CurrentLog.DragonLog.Item1.Equals(cords))
+                //Model.CurrentLog.DragonLog.Item1.X == cords.X && Model.CurrentLog.DragonLog.Item1.Y == cords.Y *@
+                {
+                    path = $"creatures/D.jpg";
+                    <div class="grid-item">
+                        <img src="@path" alt="dragon" />
+                        <span class="power-value">P: @Model.CurrentLog.DragonLog.Item2</span>
+                    </div>
+                } 
                 else
                 {
                     // Pusta komórka mapy
