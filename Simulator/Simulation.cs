@@ -21,7 +21,7 @@ namespace Simulator
         private int currentMoveIndex = 0;
         public string Moves { get; set; }
         public bool Finished { get; private set; } = false;
-        public List<Point> ActionPoints = [new Point(0, 1), new Point(0, 2), new Point(0, 3)];
+        public List<Point> OrcActionPoints = [new Point(0, 1), new Point(0, 2), new Point(0, 3)];
 
         /// <summary>
         /// Creature which will be moving current turn.
@@ -93,21 +93,39 @@ namespace Simulator
 
 
             // --------------------------------------
-            // wchodzenie w point action
-            if (ActionPoints.Contains(Location))
+            // ORK wchodzenie w point action
+            if (OrcActionPoints.Contains(Location) && CurrentMappable.Symbol == 'O')
             {
                 CurrentMappable.Action();
-                int actionPointsNumber = ActionPoints.Count;
-                for (int i = 0; i < actionPointsNumber; i++)
+                int OrcActionPointsNumber = OrcActionPoints.Count;
+                for (int i = 0; i < OrcActionPointsNumber; i++)
                 {
-                    if (Location.Equals(ActionPoints[i]) && CurrentMappable.Symbol =='O')
+                    if (Location.Equals(OrcActionPoints[i]))
                     {
-                        ActionPoints.Remove(ActionPoints[i]);
+                        OrcActionPoints.Remove(OrcActionPoints[i]);
                         break;
                     }
                 }
             }
-                
+
+            //// --------------------------------------
+            //// ELF wchodzenie w point action
+            //if (OrcActionPoints.Contains(Location) && CurrentMappable.Symbol == 'E')
+            //{
+            //    CurrentMappable.Action();
+            //    int OrcActionPointsNumber = OrcActionPoints.Count;
+            //    for (int i = 0; i < OrcActionPointsNumber; i++)
+            //    {
+            //        if (Location.Equals(OrcActionPoints[i]))
+            //        {
+            //            OrcActionPoints.Remove(OrcActionPoints[i]);
+            //            break;
+            //        }
+            //    }
+            //}
+
+
+
             // ----------------------------------------
             // walka w zaleznosci od power
             if (Map.At(Location).Count == 2)

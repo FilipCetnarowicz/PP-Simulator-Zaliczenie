@@ -28,9 +28,9 @@ public class SimulationHistory
             startingPowerDict.Add(_simulation.Positions[i], _simulation.Mappables[i].Power.ToString());
         }
         var startingActionDict = new Dictionary<Point, string>();
-        for (int i = 0; i < _simulation.ActionPoints.Count; i++)
+        for (int i = 0; i < _simulation.OrcActionPoints.Count; i++)
         {
-            startingActionDict.Add(_simulation.ActionPoints[i], "AA");
+            startingActionDict.Add(_simulation.OrcActionPoints[i], "AA");
         }
 
         var startingDragonPoint = _simulation.DragonCave.Item1;
@@ -53,7 +53,7 @@ public class SimulationHistory
         {
             var currentMappable = _simulation.CurrentMappable;
             var currentMove = _simulation.CurrentMoveName;
-            var actionPosSim = _simulation.ActionPoints;
+            var actionPosSim = _simulation.OrcActionPoints;
             var actionPos = new Dictionary<Point, string>();
             var symbolsPos = new Dictionary<Point, char>();
             var powersPos = new Dictionary<Point, string>();
