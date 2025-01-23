@@ -20,7 +20,7 @@ namespace Simulator
         private int currentMoveIndex = 0;
         public string Moves { get; set; }
         public bool Finished { get; private set; } = false;
-        public List<Point> ActionPoints = [new Point(0, 0), new Point(0, 1), new Point(0, 2)];
+        public List<Point> ActionPoints = [new Point(0, 1), new Point(0, 2), new Point(0, 3)];
 
         /// <summary>
         /// Creature which will be moving current turn.
@@ -67,18 +67,30 @@ namespace Simulator
             IMappable creature = CurrentMappable;
             Direction direction = DirectionParser.Parse(Moves)[currentMoveIndex];
             creature.Go(direction);
-
-            // wchodzenie w point action
-                // jesli punkt ten w ktorym jest stwor Map.At... CONTAINS ktorys punkt z listy power action
-                    // to Map.At (czyli ten stwor) .Action
-
-            // walka w zaleznosci od power
             var Location = CurrentMappable.CurrentPosition;
+
+            // --------------------------------------
+            // wchodzenie w point action
+            if (ActionPoints.Contains(Location))
+            {
+                CurrentMappable.Action();
+                int actionPointsNumber = ActionPoints.Count;
+                for (int i = 0; i < actionPointsNumber; i++)
+                {
+                    if (Location.Equals(ActionPoints[i]))
+                    {
+                        ActionPoints.Remove(ActionPoints[i]);
+                        break;
+                    }
+                }
+            }
+                
+            // ----------------------------------------
+            // walka w zaleznosci od power
             if (Map.At(Location).Count == 2)
             {
                 var attackerPower = Map.At(Location)[1].Power;
                 var ocuppierPower = Map.At(Location)[0].Power;
-                //var LocationCount = Map.At(Location).Count; - mozna rozwinac do sytuacji kiedy w jednym punkcie jest wiecej stworow
                 if (attackerPower >= ocuppierPower)
                 {
                     Map.At(Location)[1].Upgrade();
@@ -99,19 +111,10 @@ namespace Simulator
                     Map.At(Location)[i].Kill();
                 }
             }
-            // petla po obiektach 
-            // obiekt 1 = max
-            // if obiekt ma wiecej niz max to jest max
-            // jesli inne maja mniej niz max to kill
-            // max upgrade
-            //for (int i=1; i<fighters;i++)
-            //    {
-            //        if (Map.At(Location)[i].Power > Map.At(Location)[i-1].Power) winner = Map.At(Location)[i];
-            //    }
-
-
 
                 currentMoveIndex++;
+
+            // ------------------------------------------
             // wygrywanie po 10 rundzie (super duzy power)
             if (currentMoveIndex==10)
             {

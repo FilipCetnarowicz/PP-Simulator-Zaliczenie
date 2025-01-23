@@ -47,7 +47,7 @@ namespace SimWeb.Pages
 
             // Ci¹g ruchów symulacji
             //dldlldlddddddddlllll - kazdy rodzaj postaci sie spotyka dldlldlddddddddlllll
-            const string moves = "dldlldlddddddddlllll";
+            const string moves = "lllllllllll";
             //dlluulruuurlluulrdulrdurldu - trzy postacie w jednym polu
 
 

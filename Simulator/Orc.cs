@@ -21,17 +21,17 @@ public class Orc : Creature
         return $"Hi, I am {Name}, an Orc with {Rage} rage!";
     }
 
-    private int huntCount = 0;
-    public void Hunt()
+    //private int huntCount = 0;
+    public override void Action()
     {
-        huntCount++;
+        //huntCount++;
+        rage++;
 
-
-        if (huntCount % 2 == 0)
-        {
-            rage++;
-            Console.WriteLine($"{Name}'s rage increased to {Rage}!");
-        }
+        //if (huntCount % 2 == 0)
+        //{
+        //    rage++;
+        //    //Console.WriteLine($"{Name}'s rage increased to {Rage} by hunting!");
+        //}
     }
     public override int Power => (Level * 7) + (Rage * 3);
     public override string Info => $"[{Rage}]";

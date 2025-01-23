@@ -1,6 +1,7 @@
 ﻿using Simulator.Maps;
 using System.Drawing;
 using System.Reflection.Emit;
+using System.Reflection.Metadata.Ecma335;
 namespace Simulator;
 
 public class Animals : IMappable
@@ -73,12 +74,19 @@ public class Animals : IMappable
     {
         return CurrentPosition;
     }
-    private int size;
-    public int Size { get; set; } = 3;
+    private int size =3;
+    public int Size 
+    { 
+        get => size;
+    }
     public virtual string Info => $"{Description} <{Size}>";
     public override string ToString()
     {
         return $"{GetType().Name.ToUpper()}: {Info}";
     }
 
+    public void Action()
+    {
+        size += 1;
+    }
 }

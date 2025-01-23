@@ -23,16 +23,17 @@ public class Elf : Creature
         return $"Hi, I am {Name}, an Elf with {Agility} agility!";
     }
 
-    private int singCount = 0;
-    public void Sing()
+    //private int singCount = 0;
+    public override void Action()
     {
-        singCount++;
+        //singCount++;
+        agility++;
 
-        if (singCount % 3 == 0)
-        {
-            agility++;
-            Console.WriteLine($"{Name}'s agility increased to {Agility}!");
-        }
+        //if (singCount % 3 == 0)
+        //{
+        //    agility++;
+        //    //Console.WriteLine($"{Name}'s agility increased to {Agility} by singing!");
+        //}
     }
 
     public override string Info => $"[{Agility}]";

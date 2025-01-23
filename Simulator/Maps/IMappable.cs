@@ -2,7 +2,7 @@
 {
     public interface IMappable
     {
-
+        public void Action();
         int Power { get; }
         int Level { get; }
         public void Upgrade();

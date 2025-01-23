@@ -3,6 +3,7 @@
 namespace Simulator;
 public abstract class Creature : IMappable
 {
+    public abstract void Action();
     public void Win()
     {
         level = level + 1000;
