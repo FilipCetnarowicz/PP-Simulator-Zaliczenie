@@ -47,8 +47,9 @@ namespace SimWeb.Pages
 
             // Ci¹g ruchów symulacji
             //dldlldlddddddddlllll - kazdy rodzaj postaci sie spotyka dldlldlddddddddlllll
-            const string moves = "lllllulllullllllllllllllllllllllll";
+            const string moves = "llllldlllldllllullllullllullllullllu";
             //dlluulruuurlluulrdulrdurldu - trzy postacie w jednym polu
+            //lllllulllullllllllllllllllllllllll - ork wchodzi i wychodzi ze smoka
 
 
 

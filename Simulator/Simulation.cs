@@ -86,7 +86,7 @@ namespace Simulator
                 else
                 {
                     CurrentMappable.Win();
-                    DragonCave.Item2.Power = 0;
+                    DragonCave.Item2.Power = 3;
                 }
             }
             // walka z dragonem
