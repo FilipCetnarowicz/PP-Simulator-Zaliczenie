@@ -21,7 +21,12 @@ namespace Simulator
         private int currentMoveIndex = 0;
         public string Moves { get; set; }
         public bool Finished { get; private set; } = false;
+
+        public Dictionary<string,(Point, Point, Point)> UniversalActionPoints 
         public List<Point> OrcActionPoints = [new Point(0, 1), new Point(0, 2), new Point(0, 3)];
+        public List<Point> ElfActionPoints = [new Point(0, 4), new Point(0, 5), new Point(0, 6)];
+        public List<Point> AnimalsActionPoints = [new Point(6, 1), new Point(6, 2), new Point(6, 3)];
+        public List<Point> NonFlyKillingPoints = [new Point(6, 4), new Point(6, 5), new Point(6, 6)];
 
         /// <summary>
         /// Creature which will be moving current turn.

@@ -64,9 +64,9 @@
                         <img src="@path" alt="@Model.CurrentLog.Symbols[cords]" />
                     </div>
                 }
-                else if (Model.CurrentLog.ActionPoints.ContainsKey(cords))
+                else if (Model.CurrentLog.OrcActionPoints.ContainsKey(cords))
                 {
-                    if (Model.CurrentLog.ActionPoints[cords] == "AA")
+                    if (Model.CurrentLog.OrcActionPoints[cords] == "AA")
                     {
                         path = $"creatures/AA.jpg";
                     }
@@ -74,7 +74,7 @@
                     // Wyświetlenie obrazka w odpowiedniej komórce
 
                     <div class="grid-item">
-                        <img src="@path" alt="@Model.CurrentLog.ActionPoints[cords] class="img2" />
+                        <img src="@path" alt="@Model.CurrentLog.OrcActionPoints[cords] class="img2" />
                     </div>
                 }
                 

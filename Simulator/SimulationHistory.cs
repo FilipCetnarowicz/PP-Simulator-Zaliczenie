@@ -27,11 +27,14 @@ public class SimulationHistory
         {
             startingPowerDict.Add(_simulation.Positions[i], _simulation.Mappables[i].Power.ToString());
         }
-        var startingActionDict = new Dictionary<Point, string>();
+
+        //action
+        var startingOrcActionDict = new Dictionary<Point, string>();
         for (int i = 0; i < _simulation.OrcActionPoints.Count; i++)
         {
-            startingActionDict.Add(_simulation.OrcActionPoints[i], "AA");
+            startingOrcActionDict.Add(_simulation.OrcActionPoints[i], "AA");
         }
+
 
         var startingDragonPoint = _simulation.DragonCave.Item1;
         var startingDragonString = _simulation.DragonCave.Item2.Power.ToString();
@@ -41,7 +44,7 @@ public class SimulationHistory
             Move = "Pozycje startowe",
             Symbols = startingPosDict,
             Powers = startingPowerDict,
-            ActionPoints = startingActionDict,
+            OrcActionPoints = startingOrcActionDict,
             DragonLog = (startingDragonPoint, startingDragonString)
         });
         Run();
@@ -54,7 +57,7 @@ public class SimulationHistory
             var currentMappable = _simulation.CurrentMappable;
             var currentMove = _simulation.CurrentMoveName;
             var actionPosSim = _simulation.OrcActionPoints;
-            var actionPos = new Dictionary<Point, string>();
+            var orcActionPos = new Dictionary<Point, string>();
             var symbolsPos = new Dictionary<Point, char>();
             var powersPos = new Dictionary<Point, string>();
             var DragonPoint = _simulation.DragonCave.Item1;
@@ -64,10 +67,10 @@ public class SimulationHistory
             //tu juz sie pojawia X, po ruchu (czyli gdyby sie zabijaly a nie zerowaly to nie wyswietli sie X)
 
             // wyswietlanie pozycji akcji (trawa)
-            int actionPointsNumber = actionPosSim.Count;
+            int actionPointsNumber = _simulation.OrcActionPoints.Count;
             for (int i = 0; i < actionPointsNumber; i++)
             { 
-                actionPos.Add(actionPosSim[i], "AA");
+                orcActionPos.Add(_simulation.OrcActionPoints[i], "AA");
             }
             // if ork to hunting i symbol zmienic na H,
             // else if elf to singing i symbol na S,
@@ -102,7 +105,7 @@ public class SimulationHistory
                 Move = currentMove,
                 Symbols = symbolsPos,
                 Powers = powersPos,
-                ActionPoints = actionPos,
+                OrcActionPoints = orcActionPos,
                 DragonLog = (DragonPoint, DragonString)
             });
         }
