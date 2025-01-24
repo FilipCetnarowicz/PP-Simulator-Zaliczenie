@@ -20,7 +20,7 @@
         public override string ToString()
         {
             //return $"{GetType().Name.ToUpper()}: {Info}"
-            return $"{GetType().Name.ToUpper()}: {Description} did his turn. Current stats: {Info} * Level[{Level}] => POWER[{Power}]";
+            return $"{GetType().Name.ToUpper()}: {Description} did his turn. Current stats: {Info} / Level[{Level}] => POWER[{Power}]";
 
         }
         public override string Go(Direction direction)
@@ -31,12 +31,14 @@
             {
                 nextPosition = CurrentMap.Next(CurrentPosition, direction);
                 nextPosition = CurrentMap.Next(nextPosition, direction); 
-                nextPosition = CurrentMap.Next(nextPosition, direction); // Latające ptaki przesuwają się o trzy pola
+                nextPosition = CurrentMap.Next(nextPosition, direction); 
+                nextPosition = CurrentMap.Next(nextPosition, direction); // Latające ptaki przesuwają się o cztery pola
             }
             else
             {
                 nextPosition = CurrentMap.Next(CurrentPosition, direction);
-                nextPosition = CurrentMap.Next(nextPosition, direction); // nieloty o dwa pola
+                nextPosition = CurrentMap.Next(nextPosition, direction);
+                nextPosition = CurrentMap.Next(nextPosition, direction); // nieloty o trzy pola
             }
 
             CurrentMap.Move(this, CurrentPosition, nextPosition);

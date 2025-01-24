@@ -7,6 +7,7 @@ public abstract class Creature : IMappable
     public void Win()
     {
         level = level + 1000;
+        level = Validator.Limiter(level, 1, 1001);
     }
     public string name = "Unknown";
     public Map? CurrentMap { get; private set; }
@@ -62,7 +63,7 @@ public abstract class Creature : IMappable
 
     public void Upgrade()
     {
-        level = Math.Min(level + 1, 10);
+        level = Math.Min(level + 1, 1001);
     }
     public void Kill()
     {
@@ -70,7 +71,7 @@ public abstract class Creature : IMappable
     }
     public override string ToString()
     {
-        return $"{GetType().Name.ToUpper()}: {Name} did his turn. Current stats: Level[{Level}] * {Info} => POWER[{Power}]";
+        return $"{GetType().Name.ToUpper()}: {Name} did his turn. Current stats: Level[{Level}] / {Info} => POWER[{Power}]";
     }
 
 }

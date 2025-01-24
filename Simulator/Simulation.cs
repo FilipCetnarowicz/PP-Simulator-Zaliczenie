@@ -21,8 +21,8 @@ namespace Simulator
         private int currentMoveIndex = 0;
         public string Moves { get; set; }
         public bool Finished { get; private set; } = false;
-        public List<Point> DeadlyPoints = [new Point(1, 2), new Point(2, 3), new Point(1, 4), new Point(3, 5)];
-        public List<Point> ActionPoints = [new Point(0, 1), new Point(0, 2), new Point(0, 3)];
+        public List<Point> DeadlyPoints = [new Point(4, 3), new Point(5, 5), new Point(5, 0), new Point(1, 2)];
+        public List<Point> ActionPoints = [new Point(0, 1), new Point(5, 1), new Point(2, 4)];
 
         /// <summary>
         /// Creature which will be moving current turn.

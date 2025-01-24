@@ -10,10 +10,11 @@ public class Animals : IMappable
     public void Win()
     {
         level = level + 1000;
+        level = Validator.Limiter(level, 1, 1001);
     }
     public void Upgrade()
     {
-        level = Math.Min(level + 1, 10);
+        level = Math.Min(level + 1, 10001);
     }
     public void Kill()
     {
@@ -23,7 +24,7 @@ public class Animals : IMappable
     public int Level
     {
         get { return level; }
-        init { level = Validator.Limiter(value, 1, 10); }
+        init { level = Validator.Limiter(value, 1, 1000); }
     }
     public int Power => Size*level;
     private string description = "Unknown";
@@ -60,6 +61,8 @@ public class Animals : IMappable
         else
         {
             nextPosition = CurrentMap.Next(CurrentPosition, direction);
+            nextPosition = CurrentMap.Next(nextPosition, direction); // zwierzaki o dwa pola
+
         }
 
         CurrentMap.Move(this, CurrentPosition, nextPosition);
@@ -90,7 +93,7 @@ public class Animals : IMappable
     public override string ToString()
     {
         //return $"{GetType().Name.ToUpper()}: {Info}";
-        return $"{GetType().Name.ToUpper()}: {Description} did his turn. Current stats: Level[{Level}] * {Info} => POWER[{Power}]";
+        return $"{GetType().Name.ToUpper()}: {Description} did his turn. Current stats: Level[{Level}] / {Info} => POWER[{Power}]";
 
     }
 

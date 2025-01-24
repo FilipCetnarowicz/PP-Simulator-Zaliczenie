@@ -79,9 +79,7 @@ public class SimulationHistory
             { 
                 actionPos.Add(_simulation.ActionPoints[i], "AA");
             }
-            // if ork to hunting i symbol zmienic na H,
-            // else if elf to singing i symbol na S,
-            // else (czyli wszystkie zwierzaki) to givingBirth symbol zmienic na G
+            
             int deadlyPointsNumber = _simulation.DeadlyPoints.Count;
             for (int i = 0; i < deadlyPointsNumber; i++)
             {

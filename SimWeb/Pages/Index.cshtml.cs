@@ -28,8 +28,8 @@ namespace SimWeb.Pages
             // Lista istot na mapie
             var creatures = new List<IMappable>
             {
-                new Orc("Gorbag",5), // Ork o imieniu Gorbag
-                new Elf("Arwen"){Level=2}, // Elf o imieniu Elandor
+                new Orc("Gorbag",1), // Ork o imieniu Gorbag
+                new Elf("Arwen",1), // Elf o imieniu Elandor
                 new Animals("Rabbits", false) {Level=2}, // Zwierzêta (króliki)
                 new Birds("Eagles", true) {Level=2}, // Ptaki (or³y, zdolne do latania)
                 new Birds("Ostriches", false) {Level=2} // Ptaki (struœ, nielataj¹cy)
@@ -38,18 +38,24 @@ namespace SimWeb.Pages
             // Pozycje startowe istot na mapie
             var points = new List<Point>
             {
-                new Point(1, 1),
-                new Point(2, 2),
+                new Point(0, 5),
+                new Point(7, 0),
                 new Point(3, 3),
-                new Point(4, 4),
-                new Point(5, 5)
+                new Point(5, 4),
+                new Point(2, 1)
             };
 
             // Ci¹g ruchów symulacji
-            //dldlldlddddddddlllll - kazdy rodzaj postaci sie spotyka dldlldlddddddddlllll
-            const string moves = "llllllllllllllllllllllllllllllllllllllllllllllllllll";
+            const string moves = "uldrlrdurlrllululrdruluululllrullllulllrdulrrldldlllllll";
+            //nowe rozmieszczenie
+            //uldrlrdurlrllululrdruluululllrullllulllrdulrrldldlllllll - na nowym rozmieszczeniu, ork pokonuje smoka 
+            //uldrlrdurlrllululrdruluululllrullllulllrdulrrldldldrlddrl - elf pokonuje orka atakiem z zaskoczenia
+
+            //stare rozmieszczenie
             //dlluulruuurlluulrdulrdurldu - trzy postacie w jednym polu
             //lllllulllullllllllllllllllllllllll - ork wchodzi i wychodzi ze smoka
+            //dldlldlddddddddlllll - kazdy rodzaj postaci sie spotyka dldlldlddddddddlllll
+            //llllllllllllllllllllllllllllllllllllllllllllllllllll - testowanie dzialania przeszkod
 
 
 
