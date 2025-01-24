@@ -86,16 +86,21 @@ public class SimulationHistory
                 deadlyPos.Add(_simulation.DeadlyPoints[i], "DD");
             }
 
+            
             //jak chcialbym dac obrazku przy action to musialbym tu dac zmiane symbolu w zapisie, na np. BBA od flying bird Action
             for (int row = 0; row < SizeY; row++)
             {
                 for (int col = 0; col < SizeX; col++)
                 {
-                    
+                    //if (_simulation.Map.At(DragonPoint).Count >= 1)
+                    //{
+                    //    symbolsPos.Add(new Point(DragonPoint.X, DragonPoint.Y), 'X');
+                    //    powersPos.Add(new Point(DragonPoint.X, DragonPoint.Y), "X");
+                    //}
                     if (_simulation.Map.At(col, row).Count > 1)
                     {
                         symbolsPos.Add(new Point(col, row), 'X');
-                        powersPos.Add(new Point(col, row), "?");
+                        powersPos.Add(new Point(col, row), "X");
 
                         // tu nie ustawiam powera, bo wszystko oblicza sie i tak w silniku a przy wyswietlaniu jak jest wiecej pol to zaden power ma sie nie wyswietlac, tylko w backendzie widniec 
                     }

@@ -46,11 +46,11 @@ namespace SimWeb.Pages
             };
 
             // Ci¹g ruchów symulacji
-            const string moves = "uldrlrdurlrllululrdruluululllrullllulllrdulrrldldlllllll";
+            const string moves = "uldrlrrrrlrllululrdruluululllrullllulllrdulrrldldllllllldlrudlru";
             //nowe rozmieszczenie
             //uldrlrdurlrllululrdruluululllrullllulllrdulrrldldlllllll - na nowym rozmieszczeniu, ork pokonuje smoka 
             //uldrlrdurlrllululrdruluululllrullllulllrdulrrldldldrlddrl - elf pokonuje orka atakiem z zaskoczenia
-
+            //uldrlrrrrlrllululrdruluululllrullllulllrdulrrldldllllllldlrudlru - krolik wchodzi w lawe na poczatku, potem ork atakuje z zaskoczenia smoka 
             //stare rozmieszczenie
             //dlluulruuurlluulrdulrdurldu - trzy postacie w jednym polu
             //lllllulllullllllllllllllllllllllll - ork wchodzi i wychodzi ze smoka

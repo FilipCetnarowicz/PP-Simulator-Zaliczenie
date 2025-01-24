@@ -27,7 +27,7 @@ public abstract class Creature : IMappable
     public int Level
     {
         get { return level; }
-        init { level = Validator.Limiter(value, 1, 10); }
+        init { level = Validator.Limiter(value, 1, 1001); }
     }
 
     public Creature(string name, int level = 1)
